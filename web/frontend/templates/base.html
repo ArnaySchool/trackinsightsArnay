@@ -72,16 +72,55 @@
 
 <body class="min-h-screen bg-base-200 text-base-content">
 
-  <div id="loading-overlay" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center">
-    <div class="text-center">
-      <div id="track-text" class="font-impact italic text-primary text-8xl md:text-9xl font-bold opacity-0">
+  <div id="loading-overlay" class="fixed inset-0 bg-gradient-to-br from-[#8c0327] via-[#6b0220] to-[#4a0117] z-[9999] flex flex-col items-center justify-center overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="loading-track-line loading-track-line-1"></div>
+      <div class="loading-track-line loading-track-line-2"></div>
+      <div class="loading-track-line loading-track-line-3"></div>
+      <div class="loading-track-line loading-track-line-4"></div>
+      <div class="loading-track-line loading-track-line-5"></div>
+    </div>
+    
+    <div class="text-center relative z-10">
+      <div id="track-text" class="font-impact italic text-white text-7xl sm:text-8xl md:text-9xl font-bold opacity-0 drop-shadow-2xl">
         Track
       </div>
-      <div id="insights-text" class="font-impact italic text-primary text-8xl md:text-9xl font-bold opacity-0">
+      <div id="insights-text" class="font-impact italic text-white text-7xl sm:text-8xl md:text-9xl font-bold opacity-0 drop-shadow-2xl">
         Insights
+      </div>
+      <div id="loading-tagline" class="mt-4 text-white/60 text-sm sm:text-base tracking-widest uppercase opacity-0">
+        Indiana High School Track & Field
+      </div>
+    </div>
+    
+    <!-- Loading progress bar -->
+    <div id="loading-progress-container" class="absolute bottom-16 left-1/2 -translate-x-1/2 w-48 sm:w-64 opacity-0">
+      <div class="h-1 bg-white/20 rounded-full overflow-hidden">
+        <div id="loading-progress-bar" class="h-full bg-white rounded-full" style="width: 0%;"></div>
       </div>
     </div>
   </div>
+  
+  <style>
+    .loading-track-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: trackLineMove 2s ease-in-out infinite;
+    }
+    
+    .loading-track-line-1 { top: 20%; width: 100%; animation-delay: 0s; }
+    .loading-track-line-2 { top: 35%; width: 100%; animation-delay: 0.2s; }
+    .loading-track-line-3 { top: 50%; width: 100%; animation-delay: 0.4s; }
+    .loading-track-line-4 { top: 65%; width: 100%; animation-delay: 0.6s; }
+    .loading-track-line-5 { top: 80%; width: 100%; animation-delay: 0.8s; }
+    
+    @keyframes trackLineMove {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
 
   <style>
     @keyframes floatIn {
@@ -248,20 +287,62 @@
     </div>
   </nav>
   <div id="mobile-nav-overlay"
-    class="fixed inset-0 bg-[#9b0a14] text-white hidden flex-col items-center justify-center gap-8 px-6 py-10 z-[60]">
-    <button type="button" id="mobile-nav-close" class="absolute top-6 right-6 btn btn-ghost btn-circle text-white"
+    class="fixed inset-0 bg-gradient-to-br from-[#8c0327] via-[#6b0220] to-[#4a0117] text-white hidden flex-col items-center justify-center gap-8 px-6 py-10 z-[60] overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+    </div>
+    
+    <button type="button" id="mobile-nav-close" class="absolute top-6 right-6 btn btn-ghost btn-circle text-white hover:bg-white/10 transition-all duration-300 hover:rotate-90"
       aria-label="Close menu">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
         stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-    <nav class="flex flex-col items-center gap-6 text-2xl font-impact tracking-wider text-center">
-      <a href="{{ url_for('main.home') }}" class="mobile-menu-link uppercase">Home</a>
-      <a href="{{ url_for('main.search_page') }}" class="mobile-menu-link uppercase">Search</a>
-      <a href="{{ url_for('main.insights_page') }}" class="mobile-menu-link uppercase">Insights</a>
-      <a href="{{ url_for('main.home') }}#about" class="mobile-menu-link uppercase">About</a>
+    
+    <!-- Logo at top -->
+    <div class="absolute top-6 left-6 font-impact italic text-white/80 text-xl tracking-wide">
+      Track Insights
+    </div>
+    
+    <nav class="flex flex-col items-center gap-8 text-2xl font-impact tracking-wider text-center relative z-10">
+      <a href="{{ url_for('main.home') }}" class="mobile-menu-link uppercase group">
+        <span class="relative">
+          Home
+          <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
+      <a href="{{ url_for('main.search_page') }}" class="mobile-menu-link uppercase group">
+        <span class="relative">
+          Search
+          <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
+      <a href="{{ url_for('main.insights_page') }}" class="mobile-menu-link uppercase group">
+        <span class="relative">
+          Insights
+          <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
+      <a href="{{ url_for('main.home') }}#about" class="mobile-menu-link uppercase group">
+        <span class="relative">
+          About
+          <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+        </span>
+      </a>
     </nav>
+    
+    <!-- Social links at bottom -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6">
+      <a href="https://www.instagram.com/trackinsights/" target="_blank" rel="noopener noreferrer" 
+         class="text-white/60 hover:text-white transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+          <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+        </svg>
+      </a>
+    </div>
   </div>
   
 
@@ -742,25 +823,55 @@
       const overlay = document.getElementById('loading-overlay');
       const trackText = document.getElementById('track-text');
       const insightsText = document.getElementById('insights-text');
+      const tagline = document.getElementById('loading-tagline');
+      const progressContainer = document.getElementById('loading-progress-container');
+      const progressBar = document.getElementById('loading-progress-bar');
 
-      // Animate "Track" first
+      // Enhanced loading sequence with progress
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+        if (progress > 100) progress = 100;
+        progressBar.style.width = progress + '%';
+        progressBar.style.transition = 'width 0.1s ease-out';
+      }, 50);
+
+      // Show progress bar
+      setTimeout(() => {
+        progressContainer.style.opacity = '1';
+        progressContainer.style.transition = 'opacity 0.3s ease';
+      }, 100);
+
+      // Animate "Track" first with scale effect
       setTimeout(() => {
         trackText.classList.add('float-in');
-      }, 250);
+        trackText.style.transform = 'scale(1)';
+      }, 200);
 
       // Animate "Insights" after "Track"
       setTimeout(() => {
         insightsText.classList.add('float-in');
-      }, 500);
+      }, 400);
 
-      // Slide everything out to the right
+      // Animate tagline
       setTimeout(() => {
-        overlay.classList.add('slide-out');
-        // Remove from DOM after animation completes
+        tagline.style.opacity = '1';
+        tagline.style.transform = 'translateY(0)';
+        tagline.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      }, 600);
+
+      // Complete progress and slide out
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        progressBar.style.width = '100%';
+        
         setTimeout(() => {
-          overlay.remove();
-        }, 600);
-      }, 700);
+          overlay.classList.add('slide-out');
+          setTimeout(() => {
+            overlay.remove();
+          }, 600);
+        }, 150);
+      }, 800);
     });
   </script>
 
@@ -1062,6 +1173,109 @@
   </footer>
 
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  
+  <!-- Scroll-triggered animations initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize IntersectionObserver for scroll-triggered animations
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('[data-animate]');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Add stagger delay if present
+              const delay = entry.target.dataset.delay;
+              if (delay) {
+                entry.target.style.transitionDelay = delay + 'ms';
+              }
+              entry.target.classList.add('is-visible');
+              // Optionally unobserve after animation
+              if (!entry.target.dataset.repeat) {
+                observer.unobserve(entry.target);
+              }
+            } else if (entry.target.dataset.repeat) {
+              entry.target.classList.remove('is-visible');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        elements.forEach(el => observer.observe(el));
+      };
+      
+      animateOnScroll();
+      
+      // Counter animation for numbers
+      const animateCounters = () => {
+        const counters = document.querySelectorAll('[data-counter]');
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseInt(el.dataset.counter);
+              const duration = parseInt(el.dataset.duration) || 2000;
+              const start = 0;
+              const startTime = performance.now();
+              
+              const updateCounter = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Easing function (ease-out-expo)
+                const easeProgress = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(start + (target - start) * easeProgress);
+                
+                el.textContent = current.toLocaleString() + (el.dataset.suffix || '');
+                
+                if (progress < 1) {
+                  requestAnimationFrame(updateCounter);
+                } else {
+                  el.textContent = target.toLocaleString() + (el.dataset.suffix || '');
+                }
+              };
+              
+              requestAnimationFrame(updateCounter);
+              counterObserver.unobserve(el);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        counters.forEach(el => counterObserver.observe(el));
+      };
+      
+      animateCounters();
+      
+      // Magnetic button effect
+      const magneticButtons = document.querySelectorAll('.magnetic-btn');
+      magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+      });
+      
+      // Smooth parallax effect for elements with data-parallax
+      const parallaxElements = document.querySelectorAll('[data-parallax]');
+      if (parallaxElements.length > 0) {
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          parallaxElements.forEach(el => {
+            const speed = parseFloat(el.dataset.parallax) || 0.5;
+            el.style.transform = `translateY(${scrollY * speed}px)`;
+          });
+        }, { passive: true });
+      }
+    });
+  </script>
 </body>
 
 </html>
