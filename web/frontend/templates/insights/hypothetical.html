@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="h-screen bg-white pt-20 sm:pt-24 pb-4 px-3 sm:px-6 flex flex-col">
-  <div class="relative max-w-3xl mx-auto w-full flex flex-col min-h-0 flex-1">
-    <div
-      class="absolute inset-0 -z-10 mx-0 sm:mx-[-40px] rounded-[48px] bg-gradient-to-b from-primary/5 via-transparent to-base-200/40 blur-3xl opacity-80 pointer-events-none">
-    </div>
+<div class="h-screen bg-white pt-20 sm:pt-24 pb-4 px-3 sm:px-6 flex flex-col relative overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/8 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="relative max-w-3xl mx-auto w-full flex flex-col min-h-0 flex-1 z-10">
     <div class="relative flex flex-col min-h-0 flex-1">
-      <button onclick="history.back()" class="back-btn">
+      <button onclick="history.back()" class="back-btn hover:scale-110 transition-transform">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"
             d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -15,7 +18,7 @@
         </svg>
       </button>
 
-      <header class="text-center space-y-1 shrink-0 pb-3">
+      <header class="text-center space-y-1 shrink-0 pb-3 animate-fade-in-up">
         <h1 class="font-impact italic text-3xl sm:text-4xl text-primary">
           Hypothetical Athlete
         </h1>
@@ -24,7 +27,7 @@
         </p>
       </header>
 
-      <div class="rounded-[32px] bg-white/90 ring-1 ring-base-200 shadow-[0_25px_70px_rgba(15,23,42,0.08)] flex flex-col min-h-0 flex-1 overflow-hidden">
+      <div class="rounded-[32px] bg-white/90 ring-1 ring-base-200 shadow-[0_25px_70px_rgba(15,23,42,0.08)] flex flex-col min-h-0 flex-1 overflow-hidden card-elevated animate-fade-in-up" style="animation-delay: 0.1s;">
         <div id="loading-options" class="flex flex-col items-center justify-center py-16">
           <div class="loading loading-spinner loading-lg text-primary"></div>
           <p class="mt-4 text-gray-600">Loading options...</p>
