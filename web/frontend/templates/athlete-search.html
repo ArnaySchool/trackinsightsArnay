@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="min-h-screen bg-white text-base-content pt-20 sm:pt-24 pb-16 px-4 sm:px-6">
-  <div class="max-w-3xl mx-auto space-y-10">
-    <button onclick="history.back()" class="back-btn">
+<section class="min-h-screen bg-white text-base-content pt-20 sm:pt-24 pb-16 px-4 sm:px-6 relative overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-secondary/10 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="max-w-3xl mx-auto space-y-10 relative z-10">
+    <button onclick="history.back()" class="back-btn hover:scale-110 transition-transform">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd"
           d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -11,7 +17,7 @@
       </svg>
     </button>
 
-    <header class="space-y-4 text-center">
+    <header class="space-y-4 text-center animate-fade-in-up">
       <h1 class="font-impact text-primary text-4xl sm:text-5xl md:text-6xl">
         Find Athletes & Schools
       </h1>
@@ -20,16 +26,27 @@
       </p>
     </header>
 
-    <div class="bg-white rounded-3xl p-6 shadow-2xl space-y-6 border border-base-200">
+    <div class="bg-white rounded-3xl p-6 shadow-2xl space-y-6 border border-base-200 card-elevated animate-fade-in-up" style="animation-delay: 0.1s;">
       <form id="searchForm" class="space-y-4" autocomplete="off">
         <label for="searchInput" class="text-sm font-semibold text-primary tracking-wide uppercase">Search</label>
-        <input id="searchInput" name="q" type="text"
-          class="input input-lg input-primary w-full bg-white text-base-content" placeholder="Ex: Jordan Smith Cathedral"
-          aria-label="Search athletes by name or school" />
+        <div class="relative">
+          <input id="searchInput" name="q" type="text"
+            class="input input-lg input-primary w-full bg-white text-base-content pl-12 transition-all focus:shadow-lg focus:shadow-primary/20" 
+            placeholder="Ex: Jordan Smith Cathedral"
+            aria-label="Search athletes by name or school" />
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
       </form>
-      <div id="results" class="rounded-2xl border border-primary/30 bg-white text-base-content p-4 min-h-[180px] athlete-search-results"
+      <div id="results" class="rounded-2xl border border-primary/30 bg-white text-base-content p-4 min-h-[180px] athlete-search-results transition-all"
         aria-live="polite">
-        <p class="text-sm text-gray-500">Results will appear here once you start typing.</p>
+        <p class="text-sm text-gray-500 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Results will appear here once you start typing.
+        </p>
       </div>
     </div>
   </div>

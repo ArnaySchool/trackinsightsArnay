@@ -1,0 +1,16 @@
+{
+  "name": "trackinsights",
+  "version": "1.0.0",
+  "description": "Indiana High School Track & Field Analytics",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./web/frontend/static/css/input.css -o ./web/frontend/static/css/output.css",
+    "watch:css": "npx @tailwindcss/cli -i ./web/frontend/static/css/input.css -o ./web/frontend/static/css/output.css --watch",
+    "build": "npm run build:css"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "daisyui": "^5.0.0"
+  }
+}

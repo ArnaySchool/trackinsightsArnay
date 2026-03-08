@@ -114,6 +114,14 @@
   <div class="absolute bottom-4 right-4 md:bottom-6 md:right-6 text-[10px] sm:text-xs  uppercase text-white/80 drop-shadow-lg font-semibold no-select">
       Images licensed from IndyStar
     </div>
+    
+    <!-- Animated scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce no-select">
+      <span class="text-white/70 text-xs uppercase tracking-widest font-semibold">Scroll</span>
+      <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
   </div>
   <!-- <img src="../static/images/Track_Insights_Text.png" alt="Track Insights" style="height:60vh; width:80vw;"
       class="isolate brightness-100 opacity-50 absolute left-1/2 top-1/2 -translate-x-[52%] -translate-y-[58%] lg:-translate-y-[60%] select-none z-2"
@@ -338,10 +346,17 @@
 <div class="h-screen"></div>
 
 <!-- About Section -->
-<div id="about" class="relative z-10 bg-white min-h-screen pt-28 sm:pt-32 pb-24 sm:pb-32 px-2 sm:px-4">
-  <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12">
+<div id="about" class="relative z-10 bg-white min-h-screen pt-28 sm:pt-32 pb-24 sm:pb-32 px-2 sm:px-4 overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-40 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-secondary/10 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="max-w-6xl mx-auto space-y-8 sm:space-y-12 relative z-10">
     <div
-      class="bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10">
+      class="bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 card-elevated"
+      data-animate="fade-up">
       <h1 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
         About Track Insights
       </h1>
@@ -375,12 +390,13 @@
       </div>
     </div>
     <div
-      class="bg-gradient-to-br from-white via-secondary/10 to-primary/5 border border-secondary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 space-y-6">
+      class="bg-gradient-to-br from-white via-secondary/10 to-primary/5 border border-secondary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 space-y-6 card-elevated"
+      data-animate="fade-up" data-delay="100">
       <h2 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl font-bold">
         History
       </h2>
       <div class="space-y-4 text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">
-        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2">
+        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2 hover-lift" data-animate="fade-left" data-delay="150">
           <p class="font-impact text-primary text-xl sm:text-2xl">2023 – 2024</p>
           <p>
             Created our first program that shows how athlete results would place in other Sectionals across the state.
@@ -389,7 +405,7 @@
             for each event.
           </p>
         </div>
-        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2">
+        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2 hover-lift" data-animate="fade-left" data-delay="200">
           <p class="font-impact text-primary text-xl sm:text-2xl">2024 – 2025</p>
           <p>
             Cal B, Malcolm H, Aashiv J, Justin L, Daniel L, Emily W, Owen W, Allison X: Designed and created the database
@@ -398,7 +414,7 @@
               class="text-primary font-semibold hover:underline">@trackinsights</a>
           </p>
         </div>
-        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2">
+        <div class="rounded-2xl border border-primary/10 bg-white/80 p-5 space-y-2 hover-lift" data-animate="fade-left" data-delay="250">
           <p class="font-impact text-primary text-xl sm:text-2xl">2025 – 2026</p>
           <p>
             Arnay G, Justin L, Owen Z: Designed and created the web application, enhanced existing analysis tools, and
@@ -410,7 +426,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
       <div
-        class="card bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl transition-all">
+        class="card bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl transition-all card-elevated"
+        data-animate="fade-right" data-delay="100">
         <div class="card-body p-6 sm:p-8 space-y-2">
           <div class="flex items-center gap-3">
 
@@ -419,23 +436,23 @@
             </h2>
           </div>
           <div class="space-y-4">
-            <div class="flex gap-4">
-              <span class="text-primary font-impact text-2xl">01</span>
+            <div class="flex gap-4 group hover:translate-x-2 transition-transform duration-300">
+              <span class="text-primary font-impact text-2xl group-hover:scale-110 transition-transform">01</span>
               <p class="text-base sm:text-lg text-gray-700"><b>Athlete Dashboards</b>: View athlete IHSAA performance
                 marks in one easy-to-read place.</p>
             </div>
-            <div class="flex gap-4">
-              <span class="text-primary font-impact text-2xl">02</span>
+            <div class="flex gap-4 group hover:translate-x-2 transition-transform duration-300">
+              <span class="text-primary font-impact text-2xl group-hover:scale-110 transition-transform">02</span>
               <p class="text-base sm:text-lg text-gray-700"><b>Achievement Badges</b>: View athlete badges for
                 achievements.</p>
             </div>
-            <div class="flex gap-4">
-              <span class="text-primary font-impact text-2xl">03</span>
+            <div class="flex gap-4 group hover:translate-x-2 transition-transform duration-300">
+              <span class="text-primary font-impact text-2xl group-hover:scale-110 transition-transform">03</span>
               <p class="text-base sm:text-lg text-gray-700"><b>Performance Rankings</b>: See how athlete performances
                 rank across categories such as grade level and school size.</p>
             </div>
-            <div class="flex gap-4">
-              <span class="text-primary font-impact text-2xl">04</span>
+            <div class="flex gap-4 group hover:translate-x-2 transition-transform duration-300">
+              <span class="text-primary font-impact text-2xl group-hover:scale-110 transition-transform">04</span>
               <p class="text-base sm:text-lg text-gray-700"><b>Advanced Queries</b>: Explore data insights and track
                 trends in IHSAA playoff performances.</p>
             </div>
@@ -443,7 +460,8 @@
         </div>
       </div>
       <div
-        class="card bg-gradient-to-br from-white via-secondary/5 to-primary/10 border border-secondary/10 shadow-xl hover:shadow-2xl transition-all">
+        class="card bg-gradient-to-br from-white via-secondary/5 to-primary/10 border border-secondary/10 shadow-xl hover:shadow-2xl transition-all card-elevated"
+        data-animate="fade-left" data-delay="100">
         <div class="card-body p-6 sm:p-8 space-y-1">
           <div class="flex items-center gap-3">
             <h2 class="card-title font-impact italic text-primary text-xl sm:text-2xl md:text-3xl lg:text-4xl">
@@ -455,24 +473,24 @@
             database includes:
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4">
-              <p class="text-3xl font-impact text-primary">23,000+</p>
+            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4 hover-lift group">
+              <p class="text-3xl font-impact text-primary" data-counter="23000" data-suffix="+">0</p>
               <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Athletes</p>
             </div>
-            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4">
-              <p class="text-3xl font-impact text-primary">8,150+</p>
+            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4 hover-lift group">
+              <p class="text-3xl font-impact text-primary" data-counter="8150" data-suffix="+">0</p>
               <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Relay Results</p>
             </div>
-            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4">
-              <p class="text-3xl font-impact text-primary">62,500+</p>
+            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4 hover-lift group">
+              <p class="text-3xl font-impact text-primary" data-counter="62500" data-suffix="+">0</p>
               <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Individual Results</p>
             </div>
-            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4">
-              <p class="text-3xl font-impact text-primary">400+</p>
+            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4 hover-lift group">
+              <p class="text-3xl font-impact text-primary" data-counter="400" data-suffix="+">0</p>
               <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Member Schools</p>
             </div>
-            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4">
-              <p class="text-3xl font-impact text-primary">246</p>
+            <div class="rounded-2xl border border-primary/10 bg-white/80 p-4 hover-lift group">
+              <p class="text-3xl font-impact text-primary" data-counter="246">0</p>
               <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Meets</p>
             </div>
           </div>
@@ -481,60 +499,89 @@
     </div>
 
     <div
-      class="bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 space-y-6">
+      class="bg-gradient-to-br from-white via-primary/5 to-secondary/10 border border-primary/10 shadow-xl hover:shadow-2xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 space-y-6 card-elevated"
+      data-animate="fade-up" data-delay="150">
       <h2 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl font-bold">
         Development Team:
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
-          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3">
-          <img src="{{ url_for('static', filename='images/developer_portraits/arnay.webp') }}" alt="Arnay G."
-            class="w-28 h-28 rounded-full object-cover" />
+          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3 hover-lift group"
+          data-animate="scale" data-delay="200">
+          <div class="relative">
+            <img src="{{ url_for('static', filename='images/developer_portraits/arnay.webp') }}" alt="Arnay G."
+              class="w-28 h-28 rounded-full object-cover ring-4 ring-transparent group-hover:ring-primary/30 transition-all duration-300" />
+            <div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-all duration-300"></div>
+          </div>
           <div>
-            <p class="font-impact text-primary text-2xl sm:text-3xl">Arnay G.</p>
+            <p class="font-impact text-primary text-2xl sm:text-3xl group-hover:scale-105 transition-transform">Arnay G.</p>
             <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">FrontEnd User Interface & User Experience</p>
           </div>
         </div>
         <div
-          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3">
-          <img src="{{ url_for('static', filename='images/developer_portraits/justin.webp') }}" alt="Justin L."
-            class="w-28 h-28 rounded-full object-cover" />
+          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3 hover-lift group"
+          data-animate="scale" data-delay="250">
+          <div class="relative">
+            <img src="{{ url_for('static', filename='images/developer_portraits/justin.webp') }}" alt="Justin L."
+              class="w-28 h-28 rounded-full object-cover ring-4 ring-transparent group-hover:ring-primary/30 transition-all duration-300" />
+            <div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-all duration-300"></div>
+          </div>
           <div>
-            <p class="font-impact text-primary text-2xl sm:text-3xl">Justin L.</p>
+            <p class="font-impact text-primary text-2xl sm:text-3xl group-hover:scale-105 transition-transform">Justin L.</p>
             <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Backend Software & Database Management</p>
           </div>
         </div>
         <div
-          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3">
-          <img src="{{ url_for('static', filename='images/developer_portraits/owen.webp') }}" alt="Owen Z."
-            class="w-28 h-28 rounded-full object-cover" />
+          class="rounded-2xl border border-primary/10 bg-white/80 p-6 flex flex-col items-center text-center space-y-3 hover-lift group"
+          data-animate="scale" data-delay="300">
+          <div class="relative">
+            <img src="{{ url_for('static', filename='images/developer_portraits/owen.webp') }}" alt="Owen Z."
+              class="w-28 h-28 rounded-full object-cover ring-4 ring-transparent group-hover:ring-primary/30 transition-all duration-300" />
+            <div class="absolute inset-0 rounded-full bg-primary/0 group-hover:bg-primary/10 transition-all duration-300"></div>
+          </div>
           <div>
-            <p class="font-impact text-primary text-2xl sm:text-3xl">Owen Z.</p>
+            <p class="font-impact text-primary text-2xl sm:text-3xl group-hover:scale-105 transition-transform">Owen Z.</p>
             <p class="text-sm sm:text-base uppercase tracking-wide text-gray-500">Frontend and Backend API Integration</p>
           </div>
         </div>
       </div>
       <div
-        class="card border border-primary/10 bg-white/80 p-5 rounded-2xl sm:rounded-3xl flex flex-col items-start gap-3">
+        class="card border border-primary/10 bg-white/80 p-5 rounded-2xl sm:rounded-3xl flex flex-col items-start gap-3 hover-lift"
+        data-animate="fade-up" data-delay="200">
         <div class="flex items-center gap-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-6 w-6 text-primary" fill="none"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5 text-primary" fill="none"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
           <h3 class="font-impact italic text-primary text-xl sm:text-2xl">
             Contact
           </h3>
         </div>
-        <p class="text-base sm:text-lg md:text-xl px-2 text-gray-700 space-y-1">
-          <span class="block">We'd love to hear from you! Please reach out to us at: <a
+        <div class="text-base sm:text-lg md:text-xl px-2 text-gray-700 space-y-3">
+          <p class="flex items-start gap-3">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </span>
+            <span>We'd love to hear from you! Please reach out to us at: <a
               href="mailto:trackinsights@yahoo.com"
-              class="text-primary font-semibold hover:underline">trackinsights@yahoo.com</a></span>
-          <br>
-          <span class="block">See our past posts on Instagram: <a href="https://www.instagram.com/trackinsights/"
+              class="text-primary font-semibold hover:underline hover-underline transition-colors">trackinsights@yahoo.com</a></span>
+          </p>
+          <p class="flex items-start gap-3">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+              </svg>
+            </span>
+            <span>See our past posts on Instagram: <a href="https://www.instagram.com/trackinsights/"
               target="_blank" rel="noopener noreferrer"
-              class="text-primary font-semibold hover:underline">@trackinsights</a></span>
-        </p>
+              class="text-primary font-semibold hover:underline hover-underline transition-colors">@trackinsights</a></span>
+          </p>
+        </div>
       </div>
     </div>
   </div>

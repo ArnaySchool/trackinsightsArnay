@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="min-h-screen bg-white pt-20 sm:pt-24 pb-24 sm:pb-32 px-2 sm:px-4">
+<div class="min-h-screen bg-white pt-20 sm:pt-24 pb-24 sm:pb-32 px-2 sm:px-4 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+      <div class="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-secondary/10 to-transparent rounded-full blur-3xl -translate-x-1/2"></div>
+    </div>
 
     <!-- Loading State -->
     <div id="loading-state" class="flex flex-col items-center justify-center min-h-[60vh]">
@@ -23,8 +28,8 @@
     </div>
 
     <!-- Dashboard Content -->
-    <div id="dashboard-content" class="hidden max-w-6xl mx-auto" data-school-id="{{ school_id }}">
-        <button onclick="history.back()" class="back-btn">
+    <div id="dashboard-content" class="hidden max-w-6xl mx-auto relative z-10" data-school-id="{{ school_id }}">
+        <button onclick="history.back()" class="back-btn hover:scale-110 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd"
                     d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -33,7 +38,7 @@
         </button>
 
         <!-- Header Section -->
-        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 shadow-lg">
+        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 shadow-lg animate-fade-in-up card-elevated">
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                 <div class="w-full">
                     <h1 id="school-name"
@@ -67,7 +72,7 @@
         </div>
 
         <!-- Team Stats Section -->
-        <div class="mb-6 sm:mb-8">
+        <div class="mb-6 sm:mb-8" data-animate="fade-up" data-delay="100">
             <h2 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
                 Team Stats
                 <span class="text-sm">(Playoff Meets, 2023 to Present)</span>
@@ -77,7 +82,7 @@
         </div>
 
         <!-- School Percentiles Section (includes records) -->
-        <div class="mb-6 sm:mb-8">
+        <div class="mb-6 sm:mb-8" data-animate="fade-up" data-delay="150">
             <h2 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
                 Best Marks
             </h2>
@@ -90,7 +95,7 @@
         </div>
 
         <!-- Athletes / Roster Section -->
-        <div class="mb-6 sm:mb-8">
+        <div class="mb-6 sm:mb-8" data-animate="fade-up" data-delay="200">
             <h2 class="font-impact italic text-primary text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">
                 Roster
             </h2>

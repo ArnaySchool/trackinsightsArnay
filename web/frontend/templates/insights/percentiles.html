@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="min-h-screen bg-white pt-20 sm:pt-24 pb-5 px-3 sm:px-6">
-  <div class="relative max-w-6xl mx-auto">
-    <div
-      class="absolute inset-0 -z-10 mx-0 sm:mx-[-40px] rounded-[48px] bg-gradient-to-b from-primary/5 via-transparent to-base-200/40 blur-3xl opacity-80 pointer-events-none">
-    </div>
+<div class="min-h-screen bg-white pt-20 sm:pt-24 pb-5 px-3 sm:px-6 relative overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/8 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-secondary/10 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="relative max-w-6xl mx-auto z-10">
     <div class="relative space-y-8">
-      <button onclick="history.back()" class="back-btn">
+      <button onclick="history.back()" class="back-btn hover:scale-110 transition-transform">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"
             d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
             clip-rule="evenodd" />
         </svg>
       </button>
-      <header class="text-center space-y-4">
+      <header class="text-center space-y-4 animate-fade-in-up">
         <h1 class="font-impact italic text-4xl sm:text-5xl text-primary">
           Query: Track & Field Percentiles
         </h1>
